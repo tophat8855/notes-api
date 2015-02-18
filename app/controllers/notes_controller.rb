@@ -10,7 +10,9 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
-    render json: @note
+    if @note.save
+      render json: @note
+    end
   end
 
   def show
@@ -19,7 +21,9 @@ class NotesController < ApplicationController
 
   def destroy
     @note = Note.find(params[:id])
-    @note.destroy
+    if @note.destroy
+      render json: @note
+    end
   end
 
   private
